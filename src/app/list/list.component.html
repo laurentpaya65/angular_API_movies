@@ -1,0 +1,53 @@
+<h1>Liste des films à l'affiche</h1>
+<!-- <input (keyup)="searchMovies()"  -->
+<input #inputElt (keyup)="searchMovies(inputElt.value)"
+        placeholder="Rechercher..." type="text"
+        class="form-control sticky-top bg-dark text-light">
+
+<ul class="list-group">
+    <li (click)="goToDetailPage(result.id)" *ngFor="let result of results" 
+        class="list-group-item li-search">
+        {{result.title}}
+    </li>
+    <!-- <li *ngFor="let result of results" 
+        [routerLink]="['/detail', result.id,  'search']" 
+        class="list-group-item li-search">
+        {{result.title}}
+    </li> -->
+</ul>
+
+<!-- pour tester la template referecne #inputElt -->
+<!-- on récupère l'Element HTML dans #inputElt -->
+<!-- <p> {{inputElt.value}}</p> -->
+
+<div [style.opacity]="getListOpacity()" class="row content">
+    <div *ngFor="let movie of movies" class="col-12 col-sm-3 col-xl-2">
+        <div  [routerLink]="['/detail',movie.id,  'movies']" class="card">
+            <!-- [src] = property définie par une méthode js -->
+            <img [src]="printImagesrc(movie)" alt="Titre du film">
+            <!-- <img src="{{'https://image.tmdb.org/t/p/w500'+movie.image}}" alt=""> -->
+            <div class="card-body">
+                <h2>{{movie.title}}</h2>
+                <ratings [score]="movie.score/2">score</ratings>
+                <!-- <ratings score="2">  </ratings> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- le LOADER -->
+<div *ngIf="isLoading" class="d-flex justify-content-center align-items-center loader">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+<!-- Navigation barre pages -->
+<div class="fixed-bottom bg-info text-center p-2">
+    <button (click)="loadNextMovies()" class="btn btn-light">Films suivants</button>
+    
+</div>
+
+
+
+

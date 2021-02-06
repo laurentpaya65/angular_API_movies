@@ -1,0 +1,38 @@
+.card-body h2 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 0.8rem;
+}
+.card {
+    margin: 5px;
+    transition-duration: .2s;
+}
+.card-body {
+    background: black;
+    color: white;
+}
+.row {
+    height: calc(100vh - 100px);
+}
+.card:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.card:hover img {
+    filter: blur(2px);
+}
+
+.loader {
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999999;
+    // background: white;
+}
+
+.li-search:hover {
+    cursor: pointer;
+}
